@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bloggy</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if current_user %>
+      <p>
+        Hi, <%= current_user.username %>
+      </p>
+      <%= link_to "New Post", new_post_path, class: "btn btn-primary" %>
+      <%= button_to "Log out", session_path(id: "hey"), method: :delete, class: "btn btn-danger" %>
+    <% else %>
+      <%= link_to "Sign up!", :new_user %>
+      <%= link_to "Log In!", :new_session %>
+    <% end %>
+
+    <% if flash.any? %>
+      <% flash.each do |key, message| %>
+      <div class="alert alert-<%= key %>" role="alert">
+        <p>
+          <%= message %>
+        </p>
+      </div>
+      <% end %>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>
