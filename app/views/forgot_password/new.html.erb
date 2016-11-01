@@ -1,0 +1,10 @@
+<h1>Forgot your password?</h1>
+
+<p>
+  Give us your email address and we'll send you a link to set a new one.
+</p>
+
+<%= simple_form_for :forgot do |f| %>
+  <%= f.input :email_address %>
+  <%= f.submit "Send it" %>
+<% end %>

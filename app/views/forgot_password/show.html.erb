@@ -1,0 +1,9 @@
+<h1>Reset your password</h1>
+
+<%= simple_form_for @user do |f| %>
+
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+  <%= f.submit "Change password" %>
+
+<% end %>
