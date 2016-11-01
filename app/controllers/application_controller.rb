@@ -18,7 +18,11 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    redirect_to :root if logged_out?
+    if logged_out?
+      flash[:warning] = "You need to be logged in!"
+      session[:return_to] = request.original_fullpath
+      redirect_to new_session_path
+    end
   end
 
   def forbid_login

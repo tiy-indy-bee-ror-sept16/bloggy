@@ -1,5 +1,7 @@
 <%= simple_form_for post do |f| %>
   <%= f.input :title %>
+  <%= f.input :summary %>
   <%= f.input :body %>
+  <%= f.input :topic_names, hint: "Comma separated, please" %>
   <%= f.submit %>
 <% end %>

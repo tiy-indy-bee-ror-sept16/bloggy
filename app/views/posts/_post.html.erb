@@ -1,0 +1,13 @@
+<h1><%= link_to post.title, post %></h1>
+<p>
+  Written by <%= post.user.username %>
+</p>
+<% if post.topics.any? %>
+  <ul>
+    <% post.topics.each do |topic| %>
+      <li>
+        <%= link_to topic.name, topic %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

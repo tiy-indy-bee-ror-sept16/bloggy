@@ -1,0 +1,17 @@
+<h1><%= @post.title %></h1>
+<h6><%= @post.summary %></h6>
+<%= simple_format(@post.body) %>
+<p>
+  Written by <%= @post.user.username %>
+</p>
+
+<h4>Rejoiners</h4>
+                    <!-- "post_rejoiner_path" -->
+  <%= simple_form_for [@post, Rejoiner.new] do |f| %>
+
+    <%= f.input :body %>
+    <%= f.submit "Rejoin this!" %>
+
+  <% end %>
+
+<%= render(@post.rejoiners) || "No rejoiners yet!" %>

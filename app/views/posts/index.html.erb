@@ -1,6 +1,1 @@
-<% @posts.each do |p| %>
-  <h1><%= p.title %></h1>
-  <p>
-    Written by <%= p.user.username %>
-  </p>
-<% end %>
+<%= render @posts %>

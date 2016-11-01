@@ -8,17 +8,12 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(
                   username: params[:session][:username]
-                )
+                ).try(:authenticate, params[:session][:password])
     if user
-      if user.authenticate(params[:session][:password])
-        session[:user_id] = user.id
-        redirect_to :root
-      else
-        flash[:warning] = "Your password does not match."
-        render :new
-      end
+      session[:user_id] = user.id
+      redirect_to session[:return_to] || :root
     else
-      flash[:warning] = "No user has that name."
+      flash.now[:warning] = "Those credentials do not match"
       render :new
     end
   end
